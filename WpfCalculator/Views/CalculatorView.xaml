@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="WpfCalculator.Views.CalculatorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewmodels="clr-namespace:WpfCalculator.ViewModels"
+             mc:Ignorable="d" >
+    <UserControl.DataContext>
+        <viewmodels:CalculatorViewModel/>
+    </UserControl.DataContext>
+    <Grid Style="{StaticResource DisplayGrid}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="AUto"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Content="{Binding DisplaySum}" Style="{StaticResource Sum}"></Label>
+            <TextBox Grid.Row="1" Grid.Column="0" Style="{StaticResource Display}"
+                     Text="{Binding DisplayNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     IsReadOnly="True"
+                     />
+        </Grid>
+
+        <Grid Grid.Row="1" Style="{StaticResource KeyPadGrid}">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Row="0" Grid.Column="0" Command="{Binding ResetCommand}" Style="{StaticResource FunctionButton}">CE</Button>
+            <Button Grid.Row="0" Grid.Column="1" Command="{Binding ClearCommand}" Style="{StaticResource FunctionButton}">C</Button>
+            <Button Grid.Row="0" Grid.Column="2" Command="{Binding DeleteCommand}" Style="{StaticResource FunctionButton}">&lt;</Button>
+            <Button Grid.Row="0" Grid.Column="3" Command="{Binding OperatorCommand}" CommandParameter="*" Style="{StaticResource OperatorButton}">*</Button>
+
+            <Button Grid.Row="1" Grid.Column="0" Command="{Binding NumberCommand}" CommandParameter="8" Style="{StaticResource NumberButton}">8</Button>
+            <Button Grid.Row="1" Grid.Column="1" Command="{Binding NumberCommand}" CommandParameter="9" Style="{StaticResource NumberButton}">9</Button>
+            <Button Grid.Row="1" Grid.Column="2" Command="{Binding NumberCommand}" CommandParameter="7" Style="{StaticResource NumberButton}">7</Button>
+            <Button Grid.Row="1" Grid.Column="3" Command="{Binding OperatorCommand}" CommandParameter="/" Style="{StaticResource OperatorButton}">÷</Button>
+
+            <Button Grid.Row="2" Grid.Column="0" Command="{Binding NumberCommand}" CommandParameter="4" Style="{StaticResource NumberButton}">4</Button>
+            <Button Grid.Row="2" Grid.Column="1" Command="{Binding NumberCommand}" CommandParameter="5" Style="{StaticResource NumberButton}">5</Button>
+            <Button Grid.Row="2" Grid.Column="2" Command="{Binding NumberCommand}" CommandParameter="6" Style="{StaticResource NumberButton}">6</Button>
+            <Button Grid.Row="2" Grid.Column="3" Command="{Binding OperatorCommand}" CommandParameter="-" Style="{StaticResource OperatorButton}">-</Button>
+
+            <Button Grid.Row="3" Grid.Column="0" Command="{Binding NumberCommand}" CommandParameter="1" Style="{StaticResource NumberButton}">1</Button>
+            <Button Grid.Row="3" Grid.Column="1" Command="{Binding NumberCommand}" CommandParameter="2" Style="{StaticResource NumberButton}">2</Button>
+            <Button Grid.Row="3" Grid.Column="2" Command="{Binding NumberCommand}" CommandParameter="3" Style="{StaticResource NumberButton}">3</Button>
+            <Button Grid.Row="3" Grid.Column="3" Command="{Binding OperatorCommand}" CommandParameter="+" Style="{StaticResource OperatorButton}">+</Button>
+
+            <Button Grid.Row="4" Grid.Column="0" Command="{Binding PlusMinusCommand}" Style="{StaticResource NumberButton}">±</Button>
+            <Button Grid.Row="4" Grid.Column="1" Command="{Binding NumberCommand}" CommandParameter="0" Style="{StaticResource NumberButton}">0</Button>
+            <Button Grid.Row="4" Grid.Column="2" Command="{Binding PointCommand}" Style="{StaticResource NumberButton}">,</Button>
+            <Button Grid.Row="4" Grid.Column="3" Command="{Binding OperatorCommand}" CommandParameter="=" Style="{StaticResource OperatorButton}">=</Button>
+        </Grid>
+    </Grid>
+</UserControl>
